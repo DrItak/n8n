@@ -1,0 +1,54 @@
+{
+  "package": {
+    "productName": "n8n Desktop",
+    "version": "1.0.0"
+  },
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "",
+    "frontendDist": "../dist",
+    "devPath": "../dist/index.html"
+  },
+  "tauri": {
+    "bundle": {
+      "active": true,
+      "identifier": "io.n8n.desktop",
+      "icon": ["icons/icon.icns"],
+      "targets": ["dmg", "app"],
+      "macOS": {
+        "frameworks": [],
+        "signingIdentity": null,
+        "hardenedRuntime": true,
+        "entitlements": "entitlements.plist",
+        "exceptionDomain": "localhost"
+      }
+    },
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "sidecar": false,
+        "scope": [{ "name": "n8n", "cmd": "*" }]
+      },
+      "fs": { "all": false, "readTextFile": true, "readFile": true },
+      "path": { "all": false, "homeDir": true, "resolve": true },
+      "process": { "all": false, "relaunch": true },
+      "os": { "all": false },
+      "dialog": { "all": false, "message": true },
+      "http": { "all": true }
+    },
+    "security": { "csp": null },
+    "windows": [
+      {
+        "title": "n8n Desktop",
+        "label": "main",
+        "width": 1280,
+        "height": 800,
+        "resizable": true,
+        "fullscreen": false,
+        "visible": true,
+        "url": "index.html"
+      }
+    ]
+  }
+}

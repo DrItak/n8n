@@ -1,0 +1,6 @@
+/target
+/dist
+**/*.log
+.bundle
+.DS_Store
+**/*.local.*

@@ -1,0 +1,10 @@
+{
+  "name": "n8n-desktop-macos",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "mac:dev": "cd src-tauri && cargo tauri dev",
+    "mac:build": "cd ../../.. && pnpm build:n8n && cd apps/macos/desktop/src-tauri && cargo tauri build"
+  },
+  "devDependencies": {}
+}

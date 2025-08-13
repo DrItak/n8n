@@ -5,6 +5,7 @@ packages:
   - packages/extensions/**
   - cypress
   - packages/testing/**
+  - apps/macos/desktop
 
 catalog:
   '@n8n/typeorm': 0.3.20-12
