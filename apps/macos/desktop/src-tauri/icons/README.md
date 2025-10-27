@@ -1,0 +1,1 @@
+Place your macOS `.icns` app icon in this folder and update `tauri.conf.json` if needed.

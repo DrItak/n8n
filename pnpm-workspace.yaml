@@ -5,6 +5,7 @@ packages:
   - packages/extensions/**
   - cypress
   - packages/testing/**
+  - apps/macos/desktop
 
 minimumReleaseAge: 2880 # 2 days
 minimumReleaseAgeExclude:
