@@ -1,0 +1,85 @@
+{
+  "name": "n8n-desktop",
+  "version": "1.0.0",
+  "description": "Native macOS application for n8n workflow automation",
+  "main": "dist/main.js",
+  "homepage": "./",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:electron\" \"npm run dev:renderer\"",
+    "dev:electron": "tsc -p electron/tsconfig.json && electron .",
+    "dev:renderer": "cd ../packages/frontend/editor-ui && npm run dev",
+    "build": "npm run build:renderer && npm run build:electron",
+    "build:renderer": "cd ../packages/frontend/editor-ui && npm run build",
+    "build:electron": "tsc -p electron/tsconfig.json",
+    "build:mac": "npm run build && electron-builder --mac",
+    "build:mac-universal": "npm run build && electron-builder --mac --universal",
+    "dist": "npm run build && electron-builder",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "postinstall": "electron-builder install-app-deps",
+    "start": "electron .",
+    "pack": "npm run build && electron-builder --dir",
+    "test": "jest"
+  },
+  "build": {
+    "appId": "io.n8n.desktop",
+    "productName": "n8n Desktop",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64", "x64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["arm64", "x64"]
+        }
+      ],
+      "icon": "assets/icon.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "assets/entitlements.mac.plist",
+      "entitlementsInherit": "assets/entitlements.mac.plist",
+      "extendInfo": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        },
+        "LSMinimumSystemVersion": "12.0.0",
+        "NSHighResolutionCapable": true,
+        "NSSupportsAutomaticGraphicsSwitching": true
+      }
+    },
+    "dmg": {
+      "title": "n8n Desktop",
+      "icon": "assets/icon.icns",
+      "background": "assets/dmg-background.png",
+      "window": {
+        "width": 540,
+        "height": 380
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "concurrently": "^8.2.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0",
+    "electron-updater": "^6.1.0",
+    "node-fetch": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
